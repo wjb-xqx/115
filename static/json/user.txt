@@ -1,0 +1,15 @@
+接口返回参数说明
+
+参数名	类型	说明
+code	int	请求状态返回，1：获取信息成功；2：获取信息失败
+msg	string	请求状态提示，如：获取成功
+data	array	返回资源数据，如获取失败则返回空数组，详细参数请看 【data返回数据说明】
+data返回参数说明
+
+参数名	类型	说明
+nick	string	作者昵称
+avatar	string	作者头像地址
+gender	string	作者性别，0：男 ;1：女
+email	string	作者邮箱
+sign	string	作者个性签名
+likes_sum	string	作者获赞总数

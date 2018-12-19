@@ -1,0 +1,12 @@
+{
+  "code": 1,
+  "msg": "获取成功",
+  "data": {
+    "nick": "酷酷的旧爱",
+    "avatar": "\/static\/user_head\/de2c22bfefa2f5dc52fe855f0d297627.jpg",
+    "gender": 0,
+    "email": "45238864@qq.com",
+    "sign": "初来乍到，请多指教",
+    "likes_sum": 0
+  }
+}

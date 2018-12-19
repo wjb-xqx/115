@@ -1,0 +1,32 @@
+接口返回参数说明
+
+参数名	类型	说明
+code	int	请求状态返回，1：获取信息成功；2：获取信息失败
+msg	string	请求状态提示，如：获取成功
+data	array	返回资源数据，如获取失败则返回空数组，详细参数请看 【data返回数据说明】
+data返回参数说明
+
+参数名	类型	说明
+list	array	此参数返回的是教程的集合，其中又包含多种参数，详细参数请看 【list返回数据说明】
+list返回参数说明
+
+参数名	类型	说明
+id	string	教程的ID
+uuid	string	作者的UUID
+is_essence	int	是否为加精的教程，0：普通教程；1：加精教程
+title	string	标题
+publish_time	string	发布时间
+cover_img	string	封面路径
+qq	string	作者QQ，返回为NULL时 表示作者没有绑定QQ
+nick	string	作者昵称
+content	string	教程内容或简介
+name	string	教程分类
+day_views	string	日点击量
+week_views	string	周点击量
+month_views	string	月点击量
+all_views	string	总点击量
+likes	string	总点赞数
+data_class	string	教程类型：软件或者文章
+file_name	string	文件名称
+down_link	string	下载地址
+sys_link	string	备用下载地址

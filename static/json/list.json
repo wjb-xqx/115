@@ -1,0 +1,32 @@
+{
+  "code": 1,
+  "msg": "获取成功",
+  "data": {
+    "list": [
+      {
+        "id": 6443,
+        "uuid": "ea0dc7f6-07ec-48e4-8afa-55826454ef41",
+        "is_essence": 0,
+        "title": "刺激战场最新多功能脚本更新过十分钟12.15",
+        "publish_time": "2018-12-15 01:19:11",
+        "cover_img": "\/static\/cover\/80b405603ccfaabb5cca8aaa4c8b8f79.png",
+        "qq": "2940476147",
+        "nick": "九九",
+        "content": "<p>脚本没有加密<\/p><p>15号更新了最新过十分钟<\/p><p>全局加速可以让毒圈提前缩小，达到预判效果<\/p><p>决赛圈防封30-25人的时候开启<\/p><p>脚本更新群：262732470<\/p><p>有不懂的地方可以问我<\/p><p>QQ2940476147<\/p><p><br\/><\/p>",
+        "name": "游戏辅助",
+        "day_views": 116,
+        "week_views": 116,
+        "month_views": 116,
+        "all_views": 116,
+        "data_class": "软件",
+        "file_name": "cjzczxdgnjbgxgsfz1215_20181215011911.zip",
+        "down_link": "cjzczxdgnjbgxgsfz1215_20181215011911.zip",
+        "sky_link": "https:\/\/www.lanzous.com\/i2m0tbe",
+        "likes": 0
+      }
+    ],
+    "count": 767,
+    "pages": 39,
+    "now_page": "1"
+  }
+}
