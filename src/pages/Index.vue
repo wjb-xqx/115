@@ -7,18 +7,18 @@
                 <div class="container hotTop">
                          <i></i>
                          <div class="left">
-                             <a v-for="(item,index) in addHover" :key="index"
-                             class="hover" 
+                             <a v-for="(item,index) in addHover" :key="index" @mouseenter="changeHover(index)"
+                             :class="{hover:changHover== index}" 
                              >近期投稿</a>
                          </div>
                          <div class="right" >
-                             <div class="rightOverflow clearfix">
-                                 <div class="rightMain" :class="{rightOverflow1 : rightOverflow1, rightOverflowHover: rightOverflowHover}">
+                             <div class="rightOverflow clearfix" :class="{rightOverflow1 : rightOverflow1,rightOverflow2 : rightOverflow2}">
+                                 <div class="rightMain" >
                                      <ul>
                                          <router-link tag="li" to="/person" v-for="(item,index) in rotationData" :key="index">
                                             <a href="#">
                                                  <div class="img">
-                                                    <img :src="item.url" alt="">
+                                                    <img src="@/assets/images/person.jpeg" alt="">
                                                 </div>
                                              <h3>{{item.name}}</h3>
                                             </a>
@@ -30,7 +30,7 @@
                                          <li v-for="(item,index) in rotationData" :key="index">
                                             <a href="#">
                                                  <div class="img">
-                                                    <img :src="item.url" alt="">
+                                                    <img src="@/assets/images/person.jpeg" alt="">
                                                 </div>
                                              <h3>蓝天</h3>
                                             </a>
@@ -92,7 +92,7 @@
                     </div>
                         
                  </div>
-                <div class="right">
+                <div class="right" v-loading="loading">
                     <div class="title">
                         <div class="left">最近更新</div>
                          <i class="el-icon-arrow-right icon"></i>
@@ -107,9 +107,9 @@
                             </li>
                         </ul>
                         <div class="page">
-                            <div class="Previous">上一页</div>
+                            <div class="Previous" @click="Previous">上一页</div>
                             <b class="cfx"></b>
-                            <div class="next">下一页</div>
+                            <div class="next" @click="next">下一页</div>
                         </div>
                     </div>
                 </div>
@@ -147,12 +147,12 @@
                       <div class="text">
                           <div class="title">人气榜单</div>
                           <div class="types">
-                              <a href="#" class="hover">本月冠军</a>
-                              <a href="#">总榜之巅</a>
+                              <a href="#" :class="{hover:changeBig==index}" v-for="(item,index) in listChange"
+                              :key="index" @mouseenter="secoendChange(index)">{{item.name}}</a>
                           </div>
                       </div>
                       <div class="contanter">
-                    <div class="MaxBox">
+                    <div class="MaxBox" :class="{leftOverflowX:leftOverflowX,leftOverflowy:leftOverflowy}">
                           <ul>
                               <li>
                                   <a href="#"><i>1</i> Gm刺激战场845处理器专用版稳到飞上天 </a>
@@ -164,6 +164,9 @@
                                   <a href="#"><i>1</i> Gm刺激战场845处理器专用版稳到飞上天 </a>
                               </li>
                               <li>
+                                  <a href="#"><i>1</i> Gm刺激战场845处理器专用版稳到飞上天 </a>
+                              </li>
+                               <li>
                                   <a href="#"><i>1</i> Gm刺激战场845处理器专用版稳到飞上天 </a>
                               </li>
                            </ul>
@@ -408,25 +411,42 @@ export default {
     name:"Index",
     data(){
         return{
-            addHover:[{
+            changHover:0,
+            loading: true,
+            //投稿排名
+             addHover:[{
                 id:'001',
-                name:'近期投稿'
-            },{
-                id:'002',
-                name:'本月冠军'
-            }],
-            upList:[],
-            rightOverflow1: false,
-            rightOverflowHover: false,
-            rotationData: [{
-                id:"001",
-                name:'酷酷的旧爱',
-                url:'http://localhost:8081/static/img/default_head.png'
-            },{
-                id:"002",
-                name:'bilibili',
-                url:'http://localhost:8081/static/img/default_head.png'
-            }],
+                     name:'近期投稿'
+                 },{
+                     id:'002',
+                     name:'本月冠军'
+                 }],
+              upList:[],
+              rightOverflow1: false,
+              rightOverflow2: false,
+              rotationData: [{
+                  id:"001",
+                  name:'酷酷的旧爱',
+                  url:'http://localhost:8081/static/img/default_head.png'
+              },{
+                  id:"002",
+                  name:'bilibili',
+                  url:'http://localhost:8081/static/img/default_head.png'
+              }],
+              //人气排名
+               listChange:[{
+                  id:'1',
+                     name:'本月冠军'
+                 },{
+                     id:'2',
+                     name:'总榜之巅'
+                 }],
+                 changeBig:0,
+                 leftOverflowX:false,
+                 leftOverflowy:false,
+                 page:1,
+                 pages:0,
+                 now_page:1
         }
     },
     created(){
@@ -434,16 +454,65 @@ export default {
     },
     methods:{
          getUpdata(){
-           let updatUrl = "https://www.115z.com/u_api/Update_column.html?limit=26&page=1&app_key=aa5df25a43369803d9ef26851fb7d717"
-           this.$axios.get(updatUrl)
+             let page = this.page;
+           let updatUrl = "https://www.115z.com/u_api/Update_column.html?&app_key=aa5df25a43369803d9ef26851fb7d717"
+           this.$axios.get(updatUrl,{
+               params:{
+                   page:page,
+                   limit:26
+               }
+           })
            .then(res => {
                 this.upList = res.data.data.list
-                //  console.log(res.data.data.list)
-               
+                this.loading = false
+                this.pages = res.data.data.pages
+               this.now_page = res.data.data.now_page
+
            })
            .catch(err => {
               this.$message.error('数据请求失败~请联系站长');
            })
+       },
+       //下一页
+       next(){
+           this.page++
+           if(this.page> this.pages / 26){
+                this.$alert('已到最后一页了', '你好，官人', {
+                })
+                return
+           }
+           this.getUpdata()
+       },
+       Previous(){
+           this.page--
+           if(this.page<0){
+                this.$alert('已经是第一页了', '你好，官人', {
+                })
+           }
+           this.getUpdata()
+       },
+        //   投稿排名上下滑动
+       changeHover(index){
+           this.changHover =index;
+           if(index!=0) {
+               this.rightOverflow1 = true;
+               this.rightOverflow2 = false;
+               console.log(index)
+           }else{
+               this.rightOverflow2 = true;
+               this.rightOverflow1 = false;
+           }
+       },
+       //    人气榜单左右滑动
+       secoendChange(index){
+           this.changeBig = index;
+           if(index==1){
+               this.leftOverflowX = true
+               this.leftOverflowy = false
+           }else{
+                this.leftOverflowy = true
+                this.leftOverflowX =false
+           }
        }
    },
     components:{
@@ -567,10 +636,11 @@ export default {
     }
     .rightOverflow1 {
         transition: 0.4s all;
-        transform: translateY(0);
-    }
-    > .rightOverflowHover {
         transform: translateY(-140px);
+    }
+     .rightOverflow2 {
+        transition: 0.4s all;
+        transform: translateY(0);
     }
 }
 // 广告
@@ -1003,6 +1073,14 @@ export default {
 
         }
     }
+    .leftOverflowX {
+        transition: 0.4s all;
+        transform: translatex(-710px);
+    }
+    .leftOverflowy {
+        transition: 0.4s all;
+        transform: translatex(0px);
+    }
 }
 // 板块更新
 .updata{
@@ -1044,7 +1122,15 @@ export default {
                     }
                 }
             }
-        }
+              .leftOverflowX {
+                 transition: 0.4s all;
+                 transform: translatex(-710px);
+              }
+              .leftOverflowy {
+                  transition: 0.4s all;
+                  transform: translatex(0px);
+                  }
+              }
         >.container{
             height: 544px;
             >ul{

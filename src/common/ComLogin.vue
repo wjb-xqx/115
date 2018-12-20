@@ -31,7 +31,6 @@ export default {
     name:"ComLogin",
     data(){
         return{
-            
         }
     }
 }
@@ -55,6 +54,7 @@ export default {
          >img{
              width: 122px;
              height: 112px;
+             
          }
          >span{
              color:#fff;

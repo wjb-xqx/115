@@ -23,15 +23,15 @@
                     </div>
                 </router-link>
              </ul>
-             <!-- <el-pagination
-                @size-change="handleSizeChange"
+             <!-- 上下分页 -->
+             <el-pagination
                  @current-change="handleCurrentChange"
                  :current-page="currentPage1"
                  :pager-count="11"
                  :page-size="pageSize"
                  layout="prev, pager, next"
-                 :total="total">
-             </el-pagination> -->
+                 :total=total>
+             </el-pagination>
           </div>
         </div>
          <com-footer></com-footer>
@@ -47,7 +47,10 @@ export default {
     data(){
         return{
             listData:{},
-
+            pageCount:0,
+            pageSize:20,
+            total:0,
+            currentPage1:1
         }
     },
      components:{
@@ -67,15 +70,30 @@ export default {
     },
     methods:{
         getListData(){
-                  let listUrl = 'https://www.115z.com/u_api/Type_list_page.html?type_id=' + this.$route.params.id + '&limit=20&page=1&app_key=aa5df25a43369803d9ef26851fb7d717'
-                  this.$axios.get(listUrl)
+                 let page = this.currentPage1
+                 let limit = this.pageSize
+                  let listUrl = 'https://www.115z.com/u_api/Type_list_page.html?type_id=' + this.$route.params.id 
+                  + '&app_key=aa5df25a43369803d9ef26851fb7d717'
+                  this.$axios.get(listUrl,{
+                      params:{
+                          limit:limit,
+                          page:page
+                      }
+                  })
                   .then(res=>{
-                      return this.listData = res.data.data.list;
+                    //   console.log(res)
+                      this.listData = res.data.data.list;
+                      this.total = res.data.data.count
                   })
                  .catch(err => {
                      this.$message.error('数据请求失败~请联系站长');
                  })
-         }
+         },
+            //当前页改变时
+            handleCurrentChange(val) {
+                this.currentPage1 = val;
+                this.getListData();
+            }
     }
 }
 </script>
