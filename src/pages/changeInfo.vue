@@ -1,49 +1,51 @@
 <template>
-    <!-- 修改我的信息 -->
-     <div class="xg">
-         <div class="title">
-             修改资料
+    <div>
+        <!-- 修改我的信息 -->
+        <div class="xg">
+            <div class="title">
+                修改资料
+            </div>
+            <form action="">
+             <div class="layui-form-item">
+                 <label for="" class="layui-form-label">我的昵称</label>
+                 <div class="layui-input-block">
+                     <input type="text" class="layui-input" placeholder="昵称" value="用户8127">
+                 </div>
+             </div>
+             <div class="layui-form-item1">
+                 <label for="" class="layui-form-label">我的昵称</label>
+                 <div class="layui-input-block">
+                     <textarea name="" id="" cols="30" rows="10" placeholder="签名">
+                         初来乍到，请多指教
+                     </textarea>
+                 </div>
+             </div>
+             <div class="layui-form-item2">
+                 <label for="" class="layui-form-label">性别</label>
+                 <div class="layui-input-block">
+                    <input type="radio" name="gender" value="0" title="男" checked>男
+                    <input type="radio" name="gender" value="1" title="女">女
+                 </div>
+             </div>
+             <div class="layui-form-item3">
+                 <label for="" class="layui-form-label">我的QQ</label>
+                 <input type="text" placeholder="QQ">
+                 <div class="ts">投稿后用户联系您的方式，个人主页也会显示</div>
+             </div>
+             <div class="layui-form-item4">
+                 <div class="layui-form-item">
+                     <label for="" class="layui-form-label">我的QQ</label>
+                     <input type="text" placeholder="网站名称">
+                 </div>
+                 <div class="layui-form-item">
+                     <label for="" class="layui-form-label">我的QQ</label>
+                     <input type="text" placeholder="网站名称" value="http://www.115z.com">
+                 </div>
+             </div>
+             <button class="layui-btn">保存信息</button>
+            </form>
         </div>
-         <form action="">
-          <div class="layui-form-item">
-              <label for="" class="layui-form-label">我的昵称</label>
-              <div class="layui-input-block">
-                  <input type="text" class="layui-input" placeholder="昵称" value="用户8127">
-              </div>
-          </div>
-          <div class="layui-form-item1">
-              <label for="" class="layui-form-label">我的昵称</label>
-              <div class="layui-input-block">
-                  <textarea name="" id="" cols="30" rows="10" placeholder="签名">
-                      初来乍到，请多指教
-                  </textarea>
-              </div>
-          </div>
-          <div class="layui-form-item2">
-              <label for="" class="layui-form-label">性别</label>
-              <div class="layui-input-block">
-                 <input type="radio" name="gender" value="0" title="男" checked>男
-                 <input type="radio" name="gender" value="1" title="女">女
-              </div>
-          </div>
-          <div class="layui-form-item3">
-              <label for="" class="layui-form-label">我的QQ</label>
-              <input type="text" placeholder="QQ">
-              <div class="ts">投稿后用户联系您的方式，个人主页也会显示</div>
-          </div>
-          <div class="layui-form-item4">
-              <div class="layui-form-item">
-                  <label for="" class="layui-form-label">我的QQ</label>
-                  <input type="text" placeholder="网站名称">
-              </div>
-              <div class="layui-form-item">
-                  <label for="" class="layui-form-label">我的QQ</label>
-                  <input type="text" placeholder="网站名称" value="http://www.115z.com">
-              </div>
-          </div>
-          <button class="layui-btn">保存信息</button>
-         </form>
-     </div>
+    </div>
 </template>
 
 <script>

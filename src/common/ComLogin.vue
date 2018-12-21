@@ -10,17 +10,21 @@
             <form action="" class="loginmain">
                 <div class="input">
                     <i class="iconfont">&#xe720;</i>
-                    <input type="text" placeholder="请输入您的手机或邮箱账号" name="username">
+                    <input type="text" placeholder="请输入您的手机或邮箱账号" v-model="userNumber">
                 </div>
                 <div class="input">
                     <i class="el-icon-goods icon2"></i>
-                    <input type="password" placeholder="请输入您的密码" name="password">
+                    <input type="password" placeholder="请输入您的密码" v-model="userpassword">
                 </div>
+                 <div class="input" v-if="code">
+                    <input type="text" placeholder="验证码" maxlength="4">
+                    <img src="https://www.115z.com/verify_img.html" class="imgcode">
+                </div> 
                 <div class="loo">
-                    <div class="ks"><a href="#">注册账号</a></div>
-                    <div class="zc"><a href="#">找回密码</a></div>
+                    <div class="ks"><router-link to="/ComZ" tag="a">注册账号</router-link></div>
+                    <div class="zc"><a @click="getpaswore">找回密码</a></div>
                 </div>
-                <button>立即登录</button>
+                <button @click="loginUser">立即登录</button>
             </form>
         </div>
     </div>
@@ -31,6 +35,43 @@ export default {
     name:"ComLogin",
     data(){
         return{
+            code:false,
+            userNumber:'',
+            userpassword:''
+        }
+    },
+    methods:{
+        loginUser(){
+            let cellPhoneNumber = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
+            if(this.userNumber.length ===0){
+                this.$message({
+                 message: '警告哦，请输入您的手机号哦~',
+                 type: 'warning'
+              });
+             return;
+            }else if (!cellPhoneNumber.test(this.userNumber)) {
+                this.$message({
+                  message: '警告哦，您输入的账号格式有问题哦~',
+                  type: 'warning'
+                });
+                return;
+             }else if(this.userpassword.length === 0) {
+              this.$message({
+                message: '警告哦，请输入您的密码哦~',
+                type: 'warning'
+              });
+              return;
+            }else if (this.userpassword.length <= 6) {
+               this.$message('温柔提示,请您及时设置高强度密码哦~');
+             } else{
+              sessionStorage.setItem('token1','6YW36YW355qE5pen54ix',1)
+                 this.$router.push({
+                     path: '/user',
+                 })
+             }
+        },
+        getpaswore(){
+            this.code = true;
         }
     }
 }

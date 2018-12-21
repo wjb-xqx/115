@@ -7,6 +7,12 @@ import $ from 'jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+
+import'../static/utf8-php/ueditor.config.js'
+import'../static/utf8-php/ueditor.all.min.js'
+import'../static/utf8-php/lang/zh-cn/zh-cn.js'
+import'../static/utf8-php/ueditor.parse.min.js'
+
 import Axios  from 'axios'
 import Vuex from 'vuex'
 Vue.use(Vuex)

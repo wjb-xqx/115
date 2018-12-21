@@ -7,28 +7,26 @@
                 <div class="left">
                     <el-menu
                      default-active="2"
-                     class="el-menu-vertical-demo"
-                     @open="handleOpen"
-                     @close="handleClose">
+                     class="el-menu-vertical-demo">
                      <el-menu-item index="1">
                        <i class="iconfont">&#xe720;</i>
-                       <span slot="title">我的信息</span>
+                       <router-link to="/myInfo" tag="span" slot="title">我的信息</router-link to="/myInfo" tag="span">
                      </el-menu-item>
                      <el-menu-item index="1">
                        <i class="el-icon-edit-outline"></i>
-                       <span slot="title">在线投稿</span>
+                       <router-link to="/zxtg" tag="span" slot="title">在线投稿</router-link>
                      </el-menu-item>
                       <el-menu-item index="3">
                        <i class="el-icon-goods"></i>
-                       <span slot="title">投稿记录</span>
+                       <router-link to="/tg" tag="span" slot="title">投稿记录</router-link>
                      </el-menu-item>
                       <el-menu-item index="4">
                        <i class="el-icon-tickets"></i>
-                       <span slot="title">个人主页</span>
+                       <router-link to="/person" tag="span" slot="title">个人主页</router-link>
                      </el-menu-item>
                       <el-menu-item index="5">
                        <i class="el-icon-setting"></i>
-                       <span slot="title">我的评价</span>
+                       <router-link to="/tg" tag="span" slot="title">我的评价</router-link>
                      </el-menu-item>
                       <el-menu-item index="6">
                        <i class="el-icon-circle-check"></i>
@@ -40,49 +38,13 @@
                      </el-menu-item>
                       <el-menu-item index="8">
                        <i class="el-icon-news"></i>
-                       <span slot="title">修改密码</span>
+                       <router-link to="/changePassword" tag="span" slot="title">修改密码</router-link to="/changePassword" tag="span">
                      </el-menu-item>
                     </el-menu>
                 </div>
                  <div class="right">
-                     <!-- 有发表内容 -->
-                    <div class="tg">
-                        <div class="title">数据概述</div>
-                        <ul class="data">
-                            <li><b>1</b>
-                               <span>累计投稿</span>
-                            </li>
-                            <li><b>1</b>
-                               <span>通过次数</span>
-                            </li>
-                            <li><b>1</b>
-                               <span>失败次数</span>
-                            </li>
-                        </ul>
-                        <div class="title">投稿记录</div>
-                        <ul class="content">
-                            <li>
-                                <div class="img"></div>
-                                <div class="right">
-                                    <h3>
-                                        <span>待审核</span>
-                                        <span>文章</span>
-                                        <a href="#">标题</a>
-                                    </h3>
-                                    <div class="listContent">
-                                         刷吧刷吧刷吧刷吧刷吧 
-                                    </div>
-                                    <div class="time">
-                                        投稿时间：2018-12-19 20:13:34
-                                    </div>
-                                    <a href="#">查看详情</a>
-                                </div>
-                            </li>
-                        </ul>
-                        <p>没有更多了</p>
-                    </div>
-                    <!-- 无内容 -->
-                    
+                   
+                    <router-view/>
                 </div>
                 </div>
              </div>
@@ -99,11 +61,10 @@ export default {
     name:"user",
     components:{
         ComHeader,
-        changePassword
+        changePassword,
         // ComFooter
     },
-     
-
+   
 }
 </script>
 
@@ -136,39 +97,15 @@ export default {
       }
      }
 }
-.tg{
-    >.title{
-        line-height: 38px;
-        font-size: 25px;
-        margin-bottom: 25px;
-    }
-    >.data{
-        height: 90px;
-        margin-top: 15px;
-        >li{
-            float: left;
-            width: 28%;
-            margin-right: 3.5%;
-            text-align: center;
-        }
-    }
-    >.content{
-        >li{
-            height: 130px;
-            margin-bottom: 15px;
-            >.img{
-                width: 200px;
-                height: 130px;
-                background-color: pink;
-                float: left;
-            }
-            >.right{
-                float: left;
-                padding-left: 15px;
-            }
-        }
-    }
-
+/deep/#editor{
+    width: 800px;
+}
+ /deep/#edui1{
+    width: 800px!important;
+    // height: 800px!important;
+}
+/deep/#edui1_iframeholder{
+    height: 300px!important;
 }
 
 </style>
